@@ -1,0 +1,16 @@
+.form {
+  width: 90%;
+  height: 100%;
+}
+
+.formItem {
+  height: 50px !important;
+}
+
+.formItem input {
+  height: 100%;
+}
+
+.codeSelector .ant-input-group-addon {
+  width: 23% !important;
+}
