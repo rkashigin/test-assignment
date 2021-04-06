@@ -109,7 +109,7 @@ export const SignupForm = (props) => {
         handleChange={handleChange}
         handleBlur={handleBlur}
       />
-      <Form.Item>
+      <Form.Item label="Пол:">
         <Radio.Group
           name="gender"
           onChange={(e) => setFieldValue("gender", e.target.value)}
