@@ -7,7 +7,7 @@ import styles from "./SignupForm.module.css";
 import UserDataStoreContext from "../../../stores/userDataStore";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { generateHash } from "../../../utils";
+import { generateHash, openNotification } from "../../../utils";
 
 export const SignupForm = (props) => {
   const {
@@ -29,12 +29,22 @@ export const SignupForm = (props) => {
   const handleSubmit = () => {
     setSubmitting(true);
     const hash = generateHash();
-    axios.post("/api/signup", { ...values, hash }).then(({ data }) => {
-      userDataStore.setUserData(data);
-      Cookie.set("userData", JSON.stringify(data));
-      router.push("/profile?welcome=true");
-      setSubmitting(false);
-    });
+    axios
+      .post("/api/signup", { ...values, hash })
+      .then(({ data }) => {
+        userDataStore.setUserData(data);
+        Cookie.set("userData", JSON.stringify(data));
+        router.push("/profile?welcome=true");
+        setSubmitting(false);
+      })
+      .catch(() => {
+        setSubmitting(false);
+        openNotification({
+          title: "Ошибка!",
+          text: "Что-то пошло не так :(",
+          type: "error",
+        });
+      });
   };
 
   return (

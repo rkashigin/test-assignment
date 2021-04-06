@@ -6,3 +6,4 @@ export { default as renderProfileItem } from "./renderProfileItem";
 export { default as validateField } from "./validateField";
 export { default as validateForm } from "./validateForm";
 export { default as generateHash } from "./generateHash";
+export { default as openNotification } from "./openNotification";
